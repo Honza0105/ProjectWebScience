@@ -23,4 +23,4 @@ def getAllSynonyms(word):
     # Close the Selenium driver
     driver.quit()
 
-getAllSynonyms("Auto")
+getAllSynonyms("Haus")
