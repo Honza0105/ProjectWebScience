@@ -6,13 +6,11 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def getAllSynonyms(word):
+def getAllSynonyms(word, driver):
     address = "https://www.dwds.de/wb/" + word
     print(address)
-    options = Options()
-    options.add_argument("--headless")  # Run Chrome in headless mode
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    print("Driver initialized")
     driver.get(address)
     # Set up Selenium driver
 
@@ -30,6 +28,15 @@ def getAllSynonyms(word):
     return content
 
     # Close the Selenium driver
-    driver.quit()
 
-print(getAllSynonyms("Niederlande"))
+
+options = Options()
+options.add_argument("--headless")  # Run Chrome in headless mode
+
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+print(getAllSynonyms("Deutschland",driver))
+print(getAllSynonyms("Handy",driver))
+print(getAllSynonyms("Wort",driver))
+
+driver.quit()
