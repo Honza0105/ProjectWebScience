@@ -44,13 +44,15 @@ def get_all_synonyms(word, driver):
 
 
 options = Options()
-options.add_argument("--headless")  # Run Chrome in headless mode
+# options.add_argument("--headless")  # Run Chrome in headless mode
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
+driver = webdriver.Edge(service = Service(verbose = True))
+stopwatch = Stopwatch(2)
 get_all_synonyms("Deutschland", driver)
 get_all_synonyms("Handy", driver)
 get_all_synonyms("Wort", driver)
 get_all_synonyms("Lied", driver)
+stopwatch.stop
 
 driver.quit()
+print(stopwatch.duration)
