@@ -10,14 +10,15 @@ from stopwatch import Stopwatch
 def clean_up(text):
     if "Synonymgruppe" not in text:
         return None
-    words_to_extract = ("Synonymgruppe", "ugs.", "·", "ugs.,", "schweiz.", "ironisch",
+    words_to_extract = ("Synonymgruppe", "ugs.", "ugs.,", "schweiz.", "ironisch",
                         "sarkastisch", "lat.", "österr","Abkürzung","fachspr.",
                         "[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]",
-                        "Linguistik/Sprache","Jargon")
+                        "Linguistik/Sprache","Jargon","●","\n","'", "engl.", "veraltet", "Hauptform",
+                        "geh.")
     for word in words_to_extract:
         text = text.replace(word, "")
 
-    return text.split(".")
+    return text.split("·")
 
 
 
