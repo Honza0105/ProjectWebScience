@@ -32,4 +32,4 @@ def getAllSynonyms(word):
     # Close the Selenium driver
     driver.quit()
 
-print(getAllSynonyms("Servus"))
+print(getAllSynonyms("Niederlande"))
