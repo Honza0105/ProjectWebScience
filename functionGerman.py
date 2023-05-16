@@ -7,8 +7,21 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from stopwatch import Stopwatch
 
+def clean_up(text):
+    if "Synonymgruppe" not in text:
+        return None
+    words_to_extract = ("Synonymgruppe", "ugs.", "·", "ugs.,", "schweiz.", "ironisch",
+                        "sarkastisch", "lat.", "österr","Abkürzung","fachspr.",
+                        "[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]",
+                        "Linguistik/Sprache","Jargon")
+    for word in words_to_extract:
+        text = text.replace(word, "")
 
-def getAllSynonyms(word, driver):
+    return text.split(".")
+
+
+
+def get_all_synonyms(word, driver):
     address = "https://www.dwds.de/wb/" + word
     # print(address)
 
@@ -23,9 +36,9 @@ def getAllSynonyms(word, driver):
         return None
     # Get the content of the element
     content = element.text
-
+    content = clean_up(content)
     # Print the content
-    # print(content)
+    print(content)
 
     return content
 
@@ -35,9 +48,9 @@ options.add_argument("--headless")  # Run Chrome in headless mode
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-getAllSynonyms("Deutschland", driver)
-getAllSynonyms("Handy", driver)
-getAllSynonyms("Wort", driver)
-getAllSynonyms("Lied", driver)
+get_all_synonyms("Deutschland", driver)
+get_all_synonyms("Handy", driver)
+get_all_synonyms("Wort", driver)
+get_all_synonyms("Lied", driver)
 
 driver.quit()
