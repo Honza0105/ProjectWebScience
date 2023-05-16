@@ -19,3 +19,9 @@
 ['UnterbegriffeWort    morphologisches Wort Wort    morphologisches Wort  WortComputerBinärwort  Datenwort  WortBemerkung  Äußerung    Wort  geh.']
 ['MusikLied  SongMusikKantate  LiedLied (vereinfachend)  Schlager  volkstümliches MusikstückChanson  Lied (mit literarischem Anspruch)  Liedermacher-SongMusikKomposition  Musikstück  Titel    Lied    Stück  ', ' Hauptform  Track  ']
 6.682916200021282
+
+['Germania    Deutschland   ', ' Land der Richter und Henker   ', ' Teutonia   ', ' Teutschland   ', ' Kartoffelland  ,  ', ' Land der Dichter und Denker   ', ' Piefkei  , . ', ' Schland  , Verballhornung ', ' Tschland  , Verballhornung ', ' deutsche Lande  , , werbesprachlich ', ' grosser Kanton  , Geschichte, PolitikAltes Reich ', ' Altreich ', ' Deutsches Reich ', ' Deutschland ', ' Erstes Reich ', ' Heiliges Römisches Reich ', ' Heiliges Römisches Reich Deutscher Nation ', ' römisch-deutsches Reich    HRR   ', ' Sacrum Imperium Romanum   ', ' Sacrum Romanum Imperium  Bundesrepublik    BRD   ', ' Bundesrepublik Deutschland  offiziell ', ' Deutschland   ', ' Westdeutschland   ', ' Bunzreplik  , Verballhornung']
+['TechnikFunkfernsprecher ', ' Funktelefon ', ' Handtelefon ', ' Mobilfunktelefon ', ' Taschentelefon    Handy  , Scheinanglizismus ', ' Mobiltelefon   ', ' Ackerschnacker   ', ' Gurke   ', ' Natel  , Markenname, Smart Phone ', ' internetfähiges Mobiltelefon    Smartphone  ,  ', ' Handy   ', ' Schlauphon  , scherzhaft']
+['UnterbegriffeWort    morphologisches Wort Wort    morphologisches Wort  WortComputerBinärwort ', ' Datenwort ', ' WortBemerkung ', ' Äußerung    Wort  ']
+['MusikLied ', ' SongMusikKantate ', ' LiedLied (vereinfachend) ', ' Schlager ', ' volkstümliches MusikstückChanson ', ' Lied (mit literarischem Anspruch) ', ' Liedermacher-SongMusikKomposition ', ' Musikstück ', ' Titel    Lied   ', ' Stück  ,  ', ' Track  ']
+6.9643901999806985

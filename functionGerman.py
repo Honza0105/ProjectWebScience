@@ -45,7 +45,6 @@ def get_all_synonyms(word, driver):
 
 
 options = Options()
-# options.add_argument("--headless")  # Run Chrome in headless mode
 
 driver = webdriver.Edge(service = Service(verbose = True))
 stopwatch = Stopwatch(2)
