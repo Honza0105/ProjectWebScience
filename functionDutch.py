@@ -10,7 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 Xpath2 = "/html/body/div/div[2]/div[1]/dl[2]"
 # Xpath3 = "/html/body/div/div[2]/div[1]/dl[3]"
 
-
+my_dictionary = {}
 
 def clean_up(text, original_word):
     # if "Synonymgruppe" not in text:
@@ -57,7 +57,7 @@ def get_all_synonyms(word, driver):
     print(content)
 
     return content
-my_dictionary = {}
+
 
 def add_to_dictionary(word):
     my_dictionary[word]=get_all_synonyms(word,driver)
@@ -96,17 +96,19 @@ stopwatch = Stopwatch(2)
 # add_to_dictionary("vertaling")
 # add_to_dictionary("erik")
 # add_to_dictionary("bij")
-stopwatch.stop()
-driver.quit()
+
 # print(stopwatch.duration)
 # print(my_dictionary)
 # with open('dictionary.pkl', 'wb') as file:
 #     pickle.dump(my_dictionary, file)
-# with open('dictionary.pkl', 'rb') as file:
-#     my_dictionary = pickle.load(file)
+with open('funname.pkl', 'rb') as file:
+    my_dictionary = pickle.load(file)
+print(my_dictionary)
 # # Example: Printing all key-value pairs
 # for key, value in my_dictionary.items():
 #     print(key, value)
-add_to_dictionary("bij")
-print(my_dictionary)
+# add_to_dictionary("bij")
+# print(my_dictionary)
 # do_the_thing('test_empt.txt', 'funname.pkl')
+stopwatch.stop()
+driver.quit()
