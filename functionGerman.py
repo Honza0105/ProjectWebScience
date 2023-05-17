@@ -11,14 +11,18 @@ def clean_up(text):
     if "Synonymgruppe" not in text:
         return None
     text = text.replace("●","·")
-    words_to_extract = ("Synonymgruppe", "ugs.", "ugs.,", "schweiz.", "ironisch",
-                        "sarkastisch", "lat.", "österr","Abkürzung","fachspr.",
+    text = text.replace("Synonymgruppe", "·")
+    words_to_extract = ("ugs.", "ugs.,", "schweiz.", "ironisch",
+                        "sarkastisch", "lat.", "österr.","Abkürzung","fachspr.",
                         "[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]",
-                        "Linguistik/Sprache","Jargon","\n", " ")
+                        "Linguistik/Sprache","Jargon","\n", "  ", "Verballhornung",",",
+                        "Geschichte","Politik","Hauptform","Computer")
+    ##add delete everything within brackets
     for word in words_to_extract:
         text = text.replace(word, "")
-
-    return text.split("·")
+    Array = text.split("·")
+    Array = [item.strip() for item in Array if item.strip()]  # Remove empty items
+    return Array
 
 
 
@@ -49,7 +53,7 @@ options.add_argument("--headless")  # Run Chrome in headless mode
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 stopwatch = Stopwatch(2)
-get_all_synonyms("Deutschland", driver)
+# get_all_synonyms("Deutschland", driver)
 get_all_synonyms("Handy", driver)
 get_all_synonyms("Wort", driver)
 get_all_synonyms("Lied", driver)
