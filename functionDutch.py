@@ -1,4 +1,5 @@
 import selenium
+import pickle
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -8,6 +9,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 # Xpath1 = "/html/body/div/div[2]/div[1]/dl[1]"
 Xpath2 = "/html/body/div/div[2]/div[1]/dl[2]"
 # Xpath3 = "/html/body/div/div[2]/div[1]/dl[3]"
+
+
 
 def clean_up(text, original_word):
     # if "Synonymgruppe" not in text:
@@ -25,7 +28,7 @@ def clean_up(text, original_word):
 
 def get_all_synonyms(word, driver):
     address = "https://synoniemen.net/index.php?zoekterm=" + word
-    # print(address)
+    print(address)
 
     # print("Driver initialized")
     driver.get(address)
@@ -54,19 +57,56 @@ def get_all_synonyms(word, driver):
     print(content)
 
     return content
+my_dictionary = {}
+
+def add_to_dictionary(word):
+    my_dictionary[word]=get_all_synonyms(word,driver)
+
+def do_the_thing(input_file, output_file):
+    counter = 0
+    with open(input_file, 'r') as file:
+        for line in file:
+            word = line.strip()
+            add_to_dictionary(word)
+            counter += 1
+            if counter%10 == 0:
+                with open(output_file, 'wb') as file_out:
+                    pickle.dump(my_dictionary, file_out)
+        with open(output_file, 'wb') as file_out1:
+            pickle.dump(my_dictionary, file_out1)
+
+            # Perform additional operations with the word as needed
+
 
 options = Options()
 options.add_argument("--headless")  # Run Chrome in headless mode
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 stopwatch = Stopwatch(2)
-get_all_synonyms("fuck",driver)
-print(stopwatch.duration)
-get_all_synonyms("met",driver)
-print(stopwatch.duration)
-get_all_synonyms("vertaling",driver)
-print(stopwatch.duration)
-get_all_synonyms("erik",driver)
+
+# get_all_synonyms("fuck",driver)
+# print(stopwatch.duration)
+# get_all_synonyms("met",driver)
+# print(stopwatch.duration)
+# get_all_synonyms("vertaling",driver)
+# print(stopwatch.duration)
+# get_all_synonyms("erik",driver)
+# add_to_dictionary("fuck")
+# add_to_dictionary("met")
+# add_to_dictionary("vertaling")
+# add_to_dictionary("erik")
+# add_to_dictionary("bij")
 stopwatch.stop()
 driver.quit()
-print(stopwatch.duration)
+# print(stopwatch.duration)
+# print(my_dictionary)
+# with open('dictionary.pkl', 'wb') as file:
+#     pickle.dump(my_dictionary, file)
+# with open('dictionary.pkl', 'rb') as file:
+#     my_dictionary = pickle.load(file)
+# # Example: Printing all key-value pairs
+# for key, value in my_dictionary.items():
+#     print(key, value)
+add_to_dictionary("bij")
+print(my_dictionary)
+# do_the_thing('test_empt.txt', 'funname.pkl')
