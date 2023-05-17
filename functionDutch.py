@@ -14,7 +14,7 @@ def clean_up(text, original_word):
     #     return None
     text = text.replace("\n",",")
     # text = text.replace("Synonymgruppe", "·")
-    words_with_to_extract = (" (zn) :", " (bn) :"," (ww) :"," (vz) :")
+    words_with_to_extract = (" (zn) :", " (bn) :"," (ww) :"," (vz) :"," (tw) :")
     ##add delete everything within brackets
     for word in words_with_to_extract:
         text = text.replace(original_word+word, "")
@@ -33,12 +33,20 @@ def get_all_synonyms(word, driver):
 
     # Find the element using the XPath
     try:
-        element = driver.find_element(by.By.XPATH, "/html/body/div/div[2]/div[1]/dl[2]")
+
+        element = driver.find_element(by.By.XPATH, "/html/body/div/div[2]/div[1]/p[1]")
+
+        if element.text == "als trefwoord met bijbehorende synoniemen:":
+            element = driver.find_element(by.By.XPATH, "/html/body/div/div[2]/div[1]/dl[1]")
+        else:
+            element = driver.find_element(by.By.XPATH, "/html/body/div/div[2]/div[1]/p[2]")
+            if element.text == "als trefwoord met bijbehorende synoniemen:":
+                element = driver.find_element(by.By.XPATH, "/html/body/div/div[2]/div[1]/dl[2]")
+            else:
+                return None
+
     except selenium.common.exceptions.NoSuchElementException:
-        try:
-            element = driver.find_element(by.By.XPATH,"/html/body/div/div[2]/div[1]/dl/dd")
-        except selenium.common.exceptions.NoSuchElementException:
-            return None
+        return None
     # Get the content of the element
     content = element.text
     content = clean_up(content,word)
@@ -54,12 +62,11 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 stopwatch = Stopwatch(2)
 get_all_synonyms("fuck",driver)
 print(stopwatch.duration)
-get_all_synonyms("bij",driver)
+get_all_synonyms("met",driver)
 print(stopwatch.duration)
 get_all_synonyms("vertaling",driver)
 print(stopwatch.duration)
-get_all_synonyms("nederland",driver)
+get_all_synonyms("erik",driver)
 stopwatch.stop()
 driver.quit()
 print(stopwatch.duration)
-
