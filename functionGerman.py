@@ -10,14 +10,15 @@ from stopwatch import Stopwatch
 def clean_up(text):
     if "Synonymgruppe" not in text:
         return None
-    words_to_extract = ("Synonymgruppe", "ugs.", "·", "ugs.,", "schweiz.", "ironisch",
+    text = text.replace("●","·")
+    words_to_extract = ("Synonymgruppe", "ugs.", "ugs.,", "schweiz.", "ironisch",
                         "sarkastisch", "lat.", "österr","Abkürzung","fachspr.",
                         "[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]",
-                        "Linguistik/Sprache","Jargon")
+                        "Linguistik/Sprache","Jargon","\n", " ")
     for word in words_to_extract:
         text = text.replace(word, "")
 
-    return text.split(".")
+    return text.split("·")
 
 
 
@@ -47,10 +48,11 @@ options = Options()
 options.add_argument("--headless")  # Run Chrome in headless mode
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
+stopwatch = Stopwatch(2)
 get_all_synonyms("Deutschland", driver)
 get_all_synonyms("Handy", driver)
 get_all_synonyms("Wort", driver)
 get_all_synonyms("Lied", driver)
-
+stopwatch.stop()
 driver.quit()
+print(stopwatch.duration)
