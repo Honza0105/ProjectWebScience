@@ -5,29 +5,26 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common import by
 from stopwatch import Stopwatch
 from webdriver_manager.chrome import ChromeDriverManager
+# Xpath1 = "/html/body/div/div[2]/div[1]/dl[1]"
+Xpath2 = "/html/body/div/div[2]/div[1]/dl[2]"
+# Xpath3 = "/html/body/div/div[2]/div[1]/dl[3]"
 
-
-def clean_up(text):
-    if "Synonymgruppe" not in text:
-        return None
-    text = text.replace("●","·")
-    text = text.replace("Synonymgruppe", "·")
-    words_to_extract = ("ugs.", "ugs.,", "schweiz.", "ironisch",
-                        "sarkastisch", "lat.", "österr.","Abkürzung","fachspr.",
-                        "[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]",
-                        "Linguistik/Sprache","Jargon","\n", "  ", "Verballhornung",",",
-                        "Geschichte","Politik","Hauptform","Computer")
+def clean_up(text, original_word):
+    # if "Synonymgruppe" not in text:
+    #     return None
+    text = text.replace("\n",",")
+    # text = text.replace("Synonymgruppe", "·")
+    words_with_to_extract = (" (zn) :", " (bn) :"," (ww) :"," (vz) :")
     ##add delete everything within brackets
-    for word in words_to_extract:
-        text = text.replace(word, "")
-    Array = text.split("·")
+    for word in words_with_to_extract:
+        text = text.replace(original_word+word, "")
+    Array = text.split(",")
     Array = [item.strip() for item in Array if item.strip()]  # Remove empty items
     return Array
 
 
-
 def get_all_synonyms(word, driver):
-    address = "https://www.dwds.de/wb/" + word
+    address = "https://synoniemen.net/index.php?zoekterm=" + word
     # print(address)
 
     # print("Driver initialized")
@@ -36,27 +33,24 @@ def get_all_synonyms(word, driver):
 
     # Find the element using the XPath
     try:
-        element = driver.find_element(by.By.XPATH, "/html/body/main/div[1]/div/div[1]/div[2]/div/div[9]/div")
+        element = driver.find_element(by.By.XPATH, "/html/body/div/div[2]/div[1]/dl[2]")
     except selenium.common.exceptions.NoSuchElementException:
         return None
     # Get the content of the element
     content = element.text
-    content = clean_up(content)
+    content = clean_up(content,word)
     # Print the content
     print(content)
 
     return content
-
 
 options = Options()
 options.add_argument("--headless")  # Run Chrome in headless mode
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 stopwatch = Stopwatch(2)
-# get_all_synonyms("Deutschland", driver)
-get_all_synonyms("Handy", driver)
-get_all_synonyms("Wort", driver)
-get_all_synonyms("Lied", driver)
+get_all_synonyms("bij",driver)
 stopwatch.stop()
 driver.quit()
 print(stopwatch.duration)
+
