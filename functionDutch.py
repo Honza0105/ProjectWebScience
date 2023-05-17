@@ -35,7 +35,10 @@ def get_all_synonyms(word, driver):
     try:
         element = driver.find_element(by.By.XPATH, "/html/body/div/div[2]/div[1]/dl[2]")
     except selenium.common.exceptions.NoSuchElementException:
-        return None
+        try:
+            element = driver.find_element(by.By.XPATH,"/html/body/div/div[2]/div[1]/dl/dd")
+        except selenium.common.exceptions.NoSuchElementException:
+            return None
     # Get the content of the element
     content = element.text
     content = clean_up(content,word)
@@ -49,7 +52,13 @@ options.add_argument("--headless")  # Run Chrome in headless mode
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 stopwatch = Stopwatch(2)
+get_all_synonyms("fuck",driver)
+print(stopwatch.duration)
 get_all_synonyms("bij",driver)
+print(stopwatch.duration)
+get_all_synonyms("vertaling",driver)
+print(stopwatch.duration)
+get_all_synonyms("nederland",driver)
 stopwatch.stop()
 driver.quit()
 print(stopwatch.duration)
