@@ -7,11 +7,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common import by
 from stopwatch import Stopwatch
 from webdriver_manager.chrome import ChromeDriverManager
-# Xpath1 = "/html/body/div/div[2]/div[1]/dl[1]"
-Xpath2 = "/html/body/div/div[2]/div[1]/dl[2]"
-# Xpath3 = "/html/body/div/div[2]/div[1]/dl[3]"
 
-my_dictionary = {}
+
 
 def clean_up(text, original_word):
     # if "Synonymgruppe" not in text:
@@ -49,7 +46,6 @@ def get_all_synonyms(word, driver):
                 element = driver.find_element(by.By.XPATH, "/html/body/div/div[2]/div[1]/dl[2]")
             else:
                 return None
-
     except selenium.common.exceptions.NoSuchElementException as op:
         print(op)
         print(word)
@@ -86,30 +82,16 @@ def do_the_thing(input_file, output_file):
         with open(output_file, 'wb') as file_out1:
             pickle.dump(my_dictionary, file_out1)
 
-            # Perform additional operations with the word as needed
 
 
+my_dictionary = {}
 options = Options()
 options.add_argument("--headless")  # Run Chrome in headless mode
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 stopwatch = Stopwatch(2)
 
-# get_all_synonyms("fuck",driver)
-# print(stopwatch.duration)
-# get_all_synonyms("met",driver)
-# print(stopwatch.duration)
-# get_all_synonyms("vertaling",driver)
-# print(stopwatch.duration)
-# get_all_synonyms("erik",driver)
-# add_to_dictionary("fuck")
-# add_to_dictionary("met")
-# add_to_dictionary("vertaling")
-# add_to_dictionary("erik")
-# add_to_dictionary("bij")
 
-# print(stopwatch.duration)
-# print(my_dictionary)
 # with open('dictionary.pkl', 'wb') as file:
 #     pickle.dump(my_dictionary, file)
 #Example: Printing all key-value pairs
@@ -118,7 +100,7 @@ stopwatch = Stopwatch(2)
 # add_to_dictionary("bij")
 # print(my_dictionary)
 do_the_thing('dutch_word.txt', 'word_dutch.pkl')
-with open('word_dutch.pkl', 'rb') as file:
+with open('word_dutch_4600.pkl', 'rb') as file:
     my_dictionary = pickle.load(file)
 # print(len(my_dictionary))
 print(my_dictionary)
