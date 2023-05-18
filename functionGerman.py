@@ -33,7 +33,11 @@ def get_all_synonyms(word, driver):
     # print(address)
 
     # print("Driver initialized")
-    driver.get(address)
+    try:
+        driver.get(address)
+    except selenium.common.exceptions.WebDriverException:
+        time.sleep(1)
+        return get_all_synonyms(word,driver)
     # Set up Selenium driver
 
 # "/html/body/main/div[1]/div/div[1]/div[2]/div/div[9]/div/div[1]/div/div[3]"
@@ -60,7 +64,7 @@ def get_all_synonyms(word, driver):
     # print(classes)
     content = clean_up(content,bad_elements_set)
     # Print the content
-    print(content)
+    # print(content)
 
     return content
 
@@ -75,13 +79,14 @@ def do_the_thing(input_file, output_file):
             add_to_dictionary(word)
             counter += 1
             # time.sleep(1)
-            print(counter)
-            print(word)
-            if counter%10 == 0:
+            # print(counter)
+            # print(word)
+            if counter%100 == 0:
                 with open(output_file, 'wb') as file_out:
                     pickle.dump(dutch_dictionary, file_out)
                     print(counter)
-            if counter%35 == 0:
+                    print(stopwatch.duration)
+            if counter%10000 == 0:
                 break
         with open(output_file, 'wb') as file_out1:
             pickle.dump(dutch_dictionary, file_out1)
