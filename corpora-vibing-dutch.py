@@ -1,4 +1,5 @@
 import csv
+import re
 
 initial_corpora = "D:\\Mano\\_Uni\\NL\\NL year 2\\4.5 project\\corpora\\nld_news_2022_1M\\nld_news_2022_1M-words.txt"
 shortnened_corpora = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\output-nld_news_2022_1M-words.txt"
@@ -20,6 +21,7 @@ with open(initial_corpora, "r", encoding="utf-8") as file_in, open(shortnened_co
             word = word.replace("‘", "")
             word = word.replace(",", " ")
             word = word.replace("  ", " ")
+            word = re.sub(r"\d", "", word)  # Remove numbers from the word
             if word in unique_words:
                 removed_words.add(word)  # Add the lowercase word to the set of duplicate words
             else:
