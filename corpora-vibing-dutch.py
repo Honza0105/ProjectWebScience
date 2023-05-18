@@ -1,7 +1,7 @@
 import csv
 
-initial_corpora = "D:\\Mano\\_Uni\\NL\\NL year 2\\4.5 project\\corpora\\deu_news_2022_1M\\deu_news_2022_1M-words.txt"
-shortnened_corpora = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\output-deu_news_2022_1M-words.txt"
+initial_corpora = "D:\\Mano\\_Uni\\NL\\NL year 2\\4.5 project\\corpora\\nld_news_2022_1M\\nld_news_2022_1M-words.txt"
+shortnened_corpora = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\output-nld_news_2022_1M-words.txt"
 
 unique_words = set()
 removed_words = set()
@@ -21,7 +21,7 @@ with open(initial_corpora, "rb") as file_in, open(shortnened_corpora, "w", newli
                 csv_writer.writerow([word])  # Write the lowercase word to the CSV file
             
 # Write the duplicate words to a separate file
-removed_duplicates = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\removed_words-output-deu_news_2022_1M-words.txt"
+removed_duplicates = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\removed_words-output-nld_news_2022_1M-words.txt"
 with open(removed_duplicates, "w", encoding="utf-8") as file_duplicate:
     for word in removed_words:
         file_duplicate.write(word + "\n")
