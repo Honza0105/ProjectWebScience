@@ -7,7 +7,7 @@ def unpickling_snake(dictionary, output_file):
     with open(output_file, 'w', encoding='utf-8') as file:
         file.write("scraped_dutch = {\n")
         for key, value in dictionary.items():
-            file.write(f"    '{key}': '{value}',\n")
+            file.write(f"    {repr(key)}: {repr(value)},\n")
         file.write("}")
 
 with open(initial_pickle, 'rb') as file:
