@@ -5,7 +5,7 @@ unpickled_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for 
 
 
 def unpickling_snake(dictionary, output_file):
-    with open(output_file, 'w') as file:
+    with open(output_file, 'w', encoding='utf-8') as file:
         file.write("scraped_dutch = {\n")
         for key, value in dictionary.items():
             file.write(f"    '{key}': {value},\n")
