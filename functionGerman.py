@@ -81,6 +81,8 @@ def do_the_thing(input_file, output_file):
             # time.sleep(1)
             # print(counter)
             # print(word)
+            if counter%10 == 0:
+                print(counter)
             if counter%100 == 0:
                 with open(output_file, 'wb') as file_out:
                     pickle.dump(dutch_dictionary, file_out)
