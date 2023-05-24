@@ -84,7 +84,7 @@ def get_all_synonyms(word, driver):
     content = clean_up(content,bad_elements_set)
 
     # Print the content
-    print(content)
+    # print(content)
 
     return content
 
