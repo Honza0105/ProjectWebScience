@@ -1,5 +1,4 @@
 import pickle
-import json
 
 initial_pickle = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\_pickles\\word_dutch.pkl"
 unpickled_nodes = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\unpickled_dutch_nodes.txt"
@@ -16,8 +15,9 @@ for key, value in my_dictionary.items():
         value = ""
     new_array.append({'key': key, 'value': value})
 
-# Save the new array to the file with UTF-8 encoding
 with open(unpickled_nodes, 'w', encoding='utf-8') as file:
-    json.dump(new_array, file, ensure_ascii=False)
-
-print(f"New array successfully saved to {unpickled_nodes}.")
+# Save the dictionary as a human-readable file
+    for entry in new_array:
+        file.write(f"key: {entry['key']}\n")
+        file.write(f"value: {entry['value']}\n")
+        file.write('\n')
