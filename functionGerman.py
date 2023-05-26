@@ -2,12 +2,27 @@ import pickle
 import time
 
 import selenium
+import stopwatch
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common import by
 from stopwatch import Stopwatch
 from webdriver_manager.chrome import ChromeDriverManager
+from stopwatch import Stopwatch
+
+def clean_up(text):
+    if "Synonymgruppe" not in text:
+        return None
+    words_to_extract = ("Synonymgruppe", "ugs.", "ugs.,", "schweiz.", "ironisch",
+                        "sarkastisch", "lat.", "österr","Abkürzung","fachspr.",
+                        "[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]",
+                        "Linguistik/Sprache","Jargon","●","\n","'", "engl.", "veraltet", "Hauptform",
+                        "geh.")
+    for word in words_to_extract:
+        text = text.replace(word, "")
+
+    return text.split("·")
 
 
 def clean_up(text, words_to_extract):
@@ -47,6 +62,7 @@ def get_all_synonyms(word, driver):
     # Find the element using the XPath
     bad_elements_set = set()
     try:
+
         bad_elements = driver.find_elements(by.By.CLASS_NAME,"ot-diasystematik")
         for bad_element in bad_elements:
             bad_elements_set.add(bad_element.text)
@@ -60,9 +76,13 @@ def get_all_synonyms(word, driver):
         return None
     # Get the content of the element
     content = element.text
+
+    content = clean_up(content)
+
     # classes = element.get_attribute("class")
     # print(classes)
     content = clean_up(content,bad_elements_set)
+
     # Print the content
     # print(content)
 
