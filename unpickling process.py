@@ -16,10 +16,13 @@ def write_change_log(original_value, modified_value):
 def splitting_function(value):
     new_value = []
     for item in value:
-        words = item.split('\n')
-        new_value.extend(words)
-        # Write the changes made with .split to the change log
-        write_change_log(item, str(words))
+        if '\n' in item:
+            words = item.split('\n')
+            new_value.extend(words)
+            # Write the changes made with .split to the change log
+            write_change_log(item, str(words))
+        else:
+            new_value.append(item)
     return new_value
 
 def lowercasing_function(value):
