@@ -28,7 +28,7 @@ def dictionary_to_CSV(original_file, nodes_target, edges_target):
         writer = csv.writer(csvfile)
         writer.writerow(['Id', 'Label'])
         for i, word in enumerate(word_array):
-            writer.writerow([i, word])
+            writer.writerow([i, word.lower()])
 
     # Create edges CSV file
     with open(edges_target, 'w', newline='', encoding='utf-8', errors='ignore') as csvfile:
