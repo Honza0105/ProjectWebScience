@@ -29,7 +29,9 @@ def dictionary_to_CSV(original_file, nodes_target, edges_target):
             if targets is not None:
                 source_index = list(unique_labels).index(source.lower())  # Get the index of the source word
                 for target in targets:
-                    target_index = list(unique_labels).index(target.lower())  # Get the index of the target word
-                    writer.writerow([source_index, target_index, 'Directed'])
+                    lowercase_target = target.lower()
+                    if lowercase_target in unique_labels:
+                        target_index = list(unique_labels).index(lowercase_target)  # Get the index of the target word
+                        writer.writerow([source_index, target_index, 'Directed'])
 
 dictionary_to_CSV("Files/repickled_german.pkl", "german_nodes.csv", "german_edges.csv")
