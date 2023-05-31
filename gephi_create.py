@@ -4,13 +4,13 @@ import pickle
 def dictionary_to_CSV(original_file, nodes_target, edges_target):
     # Load data from pickle file
     with open(original_file, 'rb') as file:
-        word_synonyms = pickle.load(file)
 
     # for key in word_synonyms.keys():
     #     print(key)
 
 
 
+        word_synonyms = pickle.load(file, encoding='unicode_escape')
 
     # Create an array with unique words
     # word_array = list(set(word_synonyms.keys()).union(*word_synonyms.values()))
@@ -41,4 +41,4 @@ def dictionary_to_CSV(original_file, nodes_target, edges_target):
                     target_index = word_array.index(target)  # Get the index of the target word
                     writer.writerow([source_index, target_index, 'Directed'])
 
-dictionary_to_CSV("Files/word_german.pkl","german_nodes.csv","german_edges.csv")
+dictionary_to_CSV("Files/repickled_german.pkl", "german_nodes.csv", "german_edges.csv")
