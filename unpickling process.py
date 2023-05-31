@@ -10,7 +10,15 @@ def unpickling_the_snake(dictionary, output_file):
         for key in sorted(dictionary):
             value = dictionary[key]
             if value is not None:
-                value = [item.lower() for item in value]
+                new_value = []
+                for item in value:
+                    words = item.lower().split('\n')
+                    new_value.extend(words)
+                    # Print the changes for each key-value pair
+                    print(f"Original value: {item}")
+                    print(f"Modified value: {words}")
+                    print("------------")
+                value = new_value
             file.write(f"    {repr(key)}: {repr(value)},\n")
         file.write("}")
     with open(re_pickle, 'wb') as output_file1:
