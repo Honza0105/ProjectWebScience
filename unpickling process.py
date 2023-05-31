@@ -12,11 +12,13 @@ def unpickling_the_snake(dictionary, output_file):
             if value is not None:
                 new_value = []
                 for item in value:
-                    words = item.lower().split('\n')
-                    new_value.extend(words)
+                    lowercased = item.lower()
+                    split_up = lowercased.split('\n')
+                    new_value.extend(split_up)
+
                     # Print the changes for each key-value pair
-                    print(f"Original value: {item}")
-                    print(f"Modified value: {words}")
+                    print(f"Original value: {lowercased}")
+                    print(f"Modified value: {split_up}")
                     print("------------")
                 value = new_value
             file.write(f"    {repr(key)}: {repr(value)},\n")
