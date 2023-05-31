@@ -13,19 +13,26 @@ def write_change_log(original_value, modified_value):
         file.write(modified_value + '\n')
         file.write("------------\n")
 
+def splitting_function(value):
+    new_value = []
+    for item in value:
+        words = item.split('\n')
+        new_value.extend(words)
+        # Write the changes made with .split to the change log
+        write_change_log(item, str(words))
+    return new_value
+
+def lowercasing_function(value):
+    return [word.lower() for word in value]
+
 def unpickling_the_snake(dictionary, output_file):
     with open(output_file, 'w', encoding='utf-8') as file:
         file.write("scraped_german = {\n")
         for key in sorted(dictionary):
             value = dictionary[key]
             if value is not None:
-                new_value = []
-                for item in value:
-                    words = item.lower().split('\n')
-                    new_value.extend(words)
-                    # Write the changes made with .split to the change log
-                    write_change_log(item, str(words))
-                value = [word.lower() for word in new_value]
+                new_value = splitting_function(value)
+                value = lowercasing_function(new_value)
             file.write(f"    {repr(key)}: {repr(value)},\n")
         file.write("}")
     with open(re_pickle, 'wb') as output_file1:
