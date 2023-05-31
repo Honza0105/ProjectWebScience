@@ -18,11 +18,14 @@ def splitting_function(value):
     for item in value:
         if '\n' in item:
             words = item.split('\n')
-            new_value.extend(words)
-            # Write the changes made with .split to the change log
-            write_change_log(item, str(words))
+            for word in words:
+                if word not in [',', 'fig.', 'abwertend']:
+                    new_value.append(word)
+                    # Write the changes made with .split to the change log
+                    write_change_log(item, word)
         else:
-            new_value.append(item)
+            if item not in [',', 'fig.', 'abwertend']:
+                new_value.append(item)
     return new_value
 
 def lowercasing_function(value):
