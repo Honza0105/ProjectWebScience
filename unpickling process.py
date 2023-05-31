@@ -3,7 +3,7 @@ import pickle
 initial_pickle = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\_pickles\\word_german.pkl"
 unpickled_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\unpickled_german.py"
 re_pickle = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\repickled_german.pkl"
-change_log_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\change_log.txt"
+change_log_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\change_log_german.txt"
 
 def write_change_log(original_value, modified_value):
     with open(change_log_file, 'a', encoding='utf-8') as file:
@@ -23,9 +23,9 @@ def unpickling_the_snake(dictionary, output_file):
                 for item in value:
                     words = item.lower().split('\n')
                     new_value.extend(words)
-                    # Write the changes to the change log
+                    # Write the changes made with .split to the change log
                     write_change_log(item, str(words))
-                value = new_value
+                value = [word.lower() for word in new_value]
             file.write(f"    {repr(key)}: {repr(value)},\n")
         file.write("}")
     with open(re_pickle, 'wb') as output_file1:
