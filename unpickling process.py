@@ -7,9 +7,9 @@ change_log_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for
 
 def write_change_log(original_value, modified_value):
     with open(change_log_file, 'a', encoding='utf-8') as file:
-        file.write("Original value:\n")
+        file.write("before:\n")
         file.write(original_value + '\n')
-        file.write("Modified value:\n")
+        file.write("after:\n")
         file.write(modified_value + '\n')
         file.write("------------\n")
 
@@ -19,13 +19,15 @@ def processing_function(value):
         if '\n' in item:
             words = item.split('\n')
             for word in words:
-                if word not in [',', 'fig.', 'abwertend']:
-                    new_value.append(word.lower())
+                processed_word = word.replace('fig.', '').replace('abwertend', '')
+                if processed_word:
+                    new_value.append(processed_word.lower())
                     # Write the changes made with .split to the change log
-                    write_change_log(item, word)
+                    write_change_log(item, processed_word)
         else:
-            if item not in [',', 'fig.', 'abwertend']:
-                new_value.append(item.lower())
+            processed_item = item.replace('fig.', '').replace('abwertend', '')
+            if processed_item:
+                new_value.append(processed_item.lower())
     return new_value
 
 def unpickling_the_snake(dictionary, output_file):
