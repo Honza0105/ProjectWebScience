@@ -8,7 +8,8 @@ def unpickling_the_snake(dictionary, output_file):
         file.write("scraped_german = {\n")
         for key in sorted(dictionary):
             value = dictionary[key]
-            file.write(f"    {repr(key)}: {repr(value)},\n")
+            if value is not None:
+                file.write(f"    {repr(key.lower())}: {repr(value.lower())},\n")
         file.write("}")
 
 with open(initial_pickle, 'rb') as file:
