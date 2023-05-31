@@ -11,10 +11,21 @@ def write_change_log(original_value, modified_value, replaced_substrings):
         file.write(original_value + '\n')
         file.write("after:\n")
         file.write(modified_value + '\n')
-        file.write("stuff changed:\n")
-        for substring in replaced_substrings:
-            file.write(substring + '\n')
+        if replaced_substrings:
+            file.write("stuff changed:\n")
+            file.write('\n'.join(replaced_substrings) + '\n')
         file.write("------------\n")
+
+def process_word(word):
+    replacements = ['fig.', 'abwertend']
+    processed_word = word.lower()
+    replaced_substrings = []
+    for substring in replacements:
+        processed_word = processed_word.replace(substring, '')
+        if processed_word != word.lower():
+            replaced_substrings.append(substring)
+    processed_word = processed_word.strip()
+    return processed_word, replaced_substrings
 
 def processing_function(value):
     new_value = []
@@ -22,35 +33,15 @@ def processing_function(value):
         if '\n' in item:
             words = item.split('\n')
             for word in words:
-                replaced_substrings = []
-                processed_word = word.replace('fig.', '')
-                if processed_word != word:
-                    replaced_substrings.append('fig.')
-                processed_word = processed_word.replace(',', '')
-                if processed_word != word:
-                    replaced_substrings.append(',')
-                processed_word = processed_word.replace('abwertend', '')
-                if processed_word != word:
-                    replaced_substrings.append('abwertend')
-                processed_word = processed_word.strip()
+                processed_word, replaced_substrings = process_word(word)
                 if processed_word:
-                    new_value.append(processed_word.lower())
-                    # Write the changes made with .split to the change log
-                    write_change_log(item, processed_word, replaced_substrings)
+                    new_value.append(processed_word)
+                    write_change_log(word, processed_word, replaced_substrings)
         else:
-            replaced_substrings = []
-            processed_item = item.replace('fig.', '')
-            if processed_item != item:
-                replaced_substrings.append('fig.')
-            processed_item = processed_item.replace(',', '')
-            if processed_item != item:
-                replaced_substrings.append(',')
-            processed_item = processed_item.replace('abwertend', '')
-            if processed_item != item:
-                replaced_substrings.append('abwertend')
-            processed_item = processed_item.strip()
+            processed_item, replaced_substrings = process_word(item)
             if processed_item:
-                new_value.append(processed_item.lower())
+                new_value.append(processed_item)
+                write_change_log(item, processed_item, replaced_substrings)
     return new_value
 
 def unpickling_the_snake(dictionary, output_file):
