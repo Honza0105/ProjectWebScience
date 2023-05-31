@@ -10,7 +10,7 @@ def dictionary_to_CSV(original_file, nodes_target, edges_target):
 
 
 
-        word_synonyms = pickle.load(file, encoding='unicode_escape')
+        word_synonyms = pickle.load(file, encoding='latin1')
 
     # Create an array with unique words
     # word_array = list(set(word_synonyms.keys()).union(*word_synonyms.values()))
@@ -24,14 +24,14 @@ def dictionary_to_CSV(original_file, nodes_target, edges_target):
 
 
     # Create nodes CSV file
-    with open(nodes_target, 'w', newline='') as csvfile:
+    with open(nodes_target, 'w', newline='', encoding='utf-8', errors='ignore') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['Id', 'Label'])
         for i, word in enumerate(word_array):
             writer.writerow([i, word])
 
     # Create edges CSV file
-    with open(edges_target, 'w', newline='') as csvfile:
+    with open(edges_target, 'w', newline='', encoding='utf-8', errors='ignore') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['Source', 'Target', 'Type'])
         for source, targets in word_synonyms.items():
