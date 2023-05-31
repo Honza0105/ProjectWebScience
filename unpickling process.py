@@ -5,12 +5,15 @@ unpickled_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for 
 re_pickle = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\repickled_german.pkl"
 change_log_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\change_log_german.txt"
 
-def write_change_log(original_value, modified_value):
+def write_change_log(original_value, modified_value, replaced_substrings):
     with open(change_log_file, 'a', encoding='utf-8') as file:
         file.write("before:\n")
         file.write(original_value + '\n')
         file.write("after:\n")
         file.write(modified_value + '\n')
+        file.write("Replaced substrings:\n")
+        for substring in replaced_substrings:
+            file.write(substring + '\n')
         file.write("------------\n")
 
 def processing_function(value):
