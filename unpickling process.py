@@ -11,7 +11,7 @@ def write_change_log(original_value, modified_value, replaced_substrings):
         file.write(original_value + '\n')
         file.write("after:\n")
         file.write(modified_value + '\n')
-        file.write("Replaced substrings:\n")
+        file.write("stuff changed:\n")
         for substring in replaced_substrings:
             file.write(substring + '\n')
         file.write("------------\n")
@@ -22,13 +22,33 @@ def processing_function(value):
         if '\n' in item:
             words = item.split('\n')
             for word in words:
-                processed_word = word.replace('fig.', '').replace('abwertend', '')
+                replaced_substrings = []
+                processed_word = word.replace('fig.', '')
+                if processed_word != word:
+                    replaced_substrings.append('fig.')
+                processed_word = processed_word.replace(',', '')
+                if processed_word != word:
+                    replaced_substrings.append(',')
+                processed_word = processed_word.replace('abwertend', '')
+                if processed_word != word:
+                    replaced_substrings.append('abwertend')
+                processed_word = processed_word.strip()
                 if processed_word:
                     new_value.append(processed_word.lower())
                     # Write the changes made with .split to the change log
-                    write_change_log(item, processed_word)
+                    write_change_log(item, processed_word, replaced_substrings)
         else:
-            processed_item = item.replace('fig.', '').replace('abwertend', '')
+            replaced_substrings = []
+            processed_item = item.replace('fig.', '')
+            if processed_item != item:
+                replaced_substrings.append('fig.')
+            processed_item = processed_item.replace(',', '')
+            if processed_item != item:
+                replaced_substrings.append(',')
+            processed_item = processed_item.replace('abwertend', '')
+            if processed_item != item:
+                replaced_substrings.append('abwertend')
+            processed_item = processed_item.strip()
             if processed_item:
                 new_value.append(processed_item.lower())
     return new_value
