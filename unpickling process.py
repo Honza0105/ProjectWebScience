@@ -43,7 +43,9 @@ replacements = [', abwertend, fig.',
                 ' scherzhaft-ironisch',
                 ', veraltet',
                 ' , ,',
-                ' ,, '
+                ' ,, ',
+                ', journalistisch',
+                ', politisch'
                 ]
 
 def process_word(word):
@@ -82,8 +84,8 @@ def unpickling_the_snake(dictionary, output_file):
                 value = processing_function(value)
             file.write(f"    {repr(key)}: {repr(value)},\n")
         file.write("}")
-    with open(re_pickle, 'wb') as output_file1:
-        pickle.dump(dictionary, output_file1)
+    with open(re_pickle, 'wb') as gabijabuvocia:
+        pickle.dump(dictionary, gabijabuvocia)
 
 german_dictionary = {}
 
