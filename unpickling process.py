@@ -42,8 +42,8 @@ replacements = [', abwertend, fig.',
                 'Assoziationen	',
                 ' scherzhaft-ironisch',
                 ', veraltet',
-                ' , ,'
-
+                ' , ,',
+                ' ,, '
                 ]
 
 def process_word(word):
