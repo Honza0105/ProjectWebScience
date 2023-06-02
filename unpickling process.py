@@ -32,14 +32,16 @@ replacements = [', abwertend, fig.',
                 ' ironisch',
                 ', berlinerisch',
                 '[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]',
-                'geh., veraltet, sehr',
+                'geh., ',
+                ', sehr',
                 ' franz.,',
                 'norddeutsch',
                 ', Hauptform',
                 ' ugs.,',
                 ' Jargon',
                 'Assoziationen	',
-                ' scherzhaft-ironisch'
+                ' scherzhaft-ironisch',
+                ', veraltet',
                 ' , ,'
 
                 ]
