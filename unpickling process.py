@@ -21,31 +21,43 @@ def write_change_log(original_value, modified_value, replaced_substrings):
 
 # This is pretty funky, idk if it will actually work
 replacements = [', abwertend, fig.',
-                ', engl.',
-                ', fig.',
-                '\', \'Unterbegriffe',
-                '\'Unterbegriffe\', ',
-                ', österr., bayr.',
-                ', schweiz.',
-                ', salopp',
-                ', ruhrdt.',
-                ' ironisch',
+                ' abwertend,',
+                ' engl.',
+                ' fig.',
+                '\', \'Unterbegriffe',  #works, don't touch
+                '\'Unterbegriffe\', ',  #works, don't touch
+                ' österr., bayr.',
+                ' schweiz.',
+                ', salopp',             #works, don't touch
+                ' ruhrdt.',
+                ', ironisch',
                 ', berlinerisch',
                 '[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]',
                 'geh., ',
                 ', sehr',
                 ' franz.,',
-                'norddeutsch',
+                ' norddeutsch',
                 ', Hauptform',
                 ' ugs.,',
                 ' Jargon',
-                'Assoziationen	',
+                'Assoziationen	',      #works, don't touch, it has tab you see
                 ' scherzhaft-ironisch',
                 ', veraltet',
-                ' , ,',
-                ' ,, ',
                 ', journalistisch',
-                ', politisch'
+                ', politisch',
+                ', Spruch',
+                ' sprichwörtlich',
+                ' auch figurativ',
+                ' Modewort',
+                ' Amtsdeutsch',
+                ', juristisch',
+                ' kölsch',
+                ', floskelhaft',
+                ', regional',
+                ' lat.'
+
+                ' , ,',                 #clean up crew
+                ' ,, '                  #clean up crew
                 ]
 
 def process_word(word):
@@ -70,6 +82,7 @@ def processing_function(value):
         else:
             processed_item, replaced_substrings = process_word(item)
             if processed_item:
+                processed_item = processed_item.rstrip(', ')
                 new_value.append(processed_item)
                 write_change_log(item, processed_item, replaced_substrings)
     return new_value
