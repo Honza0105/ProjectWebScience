@@ -13,25 +13,38 @@ def write_change_log(original_value, modified_value, replaced_substrings):
         file.write(modified_value + '\n')
         if replaced_substrings:
             file.write("stuff changed:\n")
-            file.write('\n'.join(replaced_substrings) + '\n')
+            for substring in replaced_substrings:
+                changed_string = next((s for s in replacements if substring in s), None)
+                if changed_string:
+                    file.write("- {}\n".format(changed_string))
         file.write("------------\n")
 
 # This is pretty funky, idk if it will actually work
+replacements = [', abwertend, fig.',
+                ', engl.',
+                ', fig.',
+                '\', \'Unterbegriffe',
+                '\'Unterbegriffe\', ',
+                ', österr., bayr.',
+                ', schweiz.',
+                ', salopp',
+                ', ruhrdt.',
+                ' ironisch',
+                ', berlinerisch',
+                '[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]',
+                'geh., veraltet, sehr',
+                ' franz.,',
+                'norddeutsch',
+                ', Hauptform',
+                ' ugs.,',
+                ' Jargon',
+                'Assoziationen	',
+                ' scherzhaft-ironisch'
+                ' , ,'
+
+                ]
+
 def process_word(word):
-    replacements = [', abwertend, fig.',
-                    ', engl.',
-                    ', fig.',
-                    '\', \'Unterbegriffe',
-                    '\'Unterbegriffe\', ',
-                    ', österr., bayr.',
-                    ', schweiz.',
-                    ', salopp',
-                    ', ruhrdt.',
-                    'ironisch',
-                    ', berlinerisch',
-                    '[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]',
-                    'geh., veraltet, sehr'
-                    ]
     processed_word = word.lower()
     replaced_substrings = []
     for substring in replacements:
