@@ -16,8 +16,22 @@ def write_change_log(original_value, modified_value, replaced_substrings):
             file.write('\n'.join(replaced_substrings) + '\n')
         file.write("------------\n")
 
+# This is pretty funky, idk if it will actually work
 def process_word(word):
-    replacements = ['fig.', 'abwertend']
+    replacements = [', abwertend, fig.',
+                    ', engl.',
+                    ', fig.',
+                    '\', \'Unterbegriffe',
+                    '\'Unterbegriffe\', ',
+                    ', österr., bayr.',
+                    ', schweiz.',
+                    ', salopp',
+                    ', ruhrdt.',
+                    'ironisch',
+                    ', berlinerisch',
+                    '[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]',
+                    'geh., veraltet, sehr'
+                    ]
     processed_word = word.lower()
     replaced_substrings = []
     for substring in replacements:
