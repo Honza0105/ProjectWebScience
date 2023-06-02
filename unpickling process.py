@@ -14,7 +14,9 @@ def write_change_log(original_value, modified_value, replaced_substrings):
         if replaced_substrings:
             file.write("stuff changed:\n")
             for substring in replaced_substrings:
-                file.write("- {}\n".format(substring))
+                changed_string = next((s for s in replacements if substring in s), None)
+                if changed_string:
+                    file.write("- {}\n".format(changed_string))
         file.write("------------\n")
 
 # This is pretty funky, idk if it will actually work
@@ -47,13 +49,12 @@ replacements = [', abwertend, fig.',
                 ]
 
 def process_word(word):
-    processed_word = word
     replaced_substrings = []
     for substring in replacements:
-        processed_word = processed_word.replace(substring, '')
-        if processed_word != word:
+        if substring in word:
+            word = word.replace(substring, '')
             replaced_substrings.append(substring)
-    processed_word = processed_word.strip()
+    processed_word = word.lower().strip()
     return processed_word, replaced_substrings
 
 def processing_function(value):
