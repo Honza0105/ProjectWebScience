@@ -1,5 +1,6 @@
 import csv
 
+def dictionary_to_CSV(word_synonyms, nodes_target, edges_target):
     # Create an array with unique words
     keys = word_synonyms.keys()
     value_sets = [set(v) for v in word_synonyms.values() if v is not None]
