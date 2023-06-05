@@ -32,4 +32,6 @@ def dictionary_to_CSV(original_file, nodes_target, edges_target):
                     target_index = word_array.index(target)  # Get the index of the target word
                     writer.writerow([source_index, target_index, 'Directed'])
 
-dictionary_to_CSV("Files/repickled_german.pkl", "german_nodes.csv", "german_edges.csv")
+re_pickle = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\repickled_german.pkl"
+
+dictionary_to_CSV(re_pickle, "german_nodes.csv", "german_edges.csv")
