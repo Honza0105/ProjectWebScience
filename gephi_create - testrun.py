@@ -1,10 +1,4 @@
 import csv
-import pickle
-
-def dictionary_to_CSV(original_file, nodes_target, edges_target):
-    # Load data from pickle file
-    with open(original_file, 'rb') as file:
-        word_synonyms = pickle.load(file, encoding='latin1')
 
     # Create an array with unique words
     keys = word_synonyms.keys()
@@ -32,7 +26,6 @@ def dictionary_to_CSV(original_file, nodes_target, edges_target):
                     target_index = word_array.index(target)  # Get the index of the target word
                     writer.writerow([source_index, target_index, 'Directed'])
 
-re_pickle = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\repickled_german.pkl"
 unpickled_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\unpickled_german.py"
 
-dictionary_to_CSV(re_pickle, "german_nodes.csv", "german_edges.csv")
+dictionary_to_CSV(unpickled_file, "german_nodes.csv", "german_edges.csv")
