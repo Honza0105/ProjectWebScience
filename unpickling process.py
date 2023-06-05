@@ -23,6 +23,7 @@ def write_change_log(original_value, modified_value, replaced_substrings):
 replacements = [', abwertend',
                 ' engl.',
                 ' fig.',
+                'NS-Jargon',
                 '\', \'Unterbegriffe',  #works, don't touch
                 '\'Unterbegriffe\', ',  #works, don't touch
                 ' österr.',
@@ -126,7 +127,34 @@ replacements = [', abwertend',
                 ' auch ironisch',
                 ' dichterisch',
                 ', Philosophie',
-                ''
+                'Scheinanglizismus',
+                'Markenname',
+                'ital.',
+                ', kommentierend',
+                ' euphemistisch',
+                ' seemännisch',
+                ' Verstärkung',
+                ' hessisch',
+                ' psychologisch',
+                ' mediensprachlich',
+                ' mitteldeutsch',
+                ', Plural',
+                ', selten',
+                ' schimpfwort',
+                ' abkürzung',
+                ' sächsisch',
+                ' alemannisch',
+                ' sexualisiert',
+                ' papierdeutsch',
+                ' westfälisch',
+                'alte schreibung bis 2017',
+                ' kärntnerisch',
+                ' schlagwort',
+                ' vorarlbergerisch',
+                ' französierend',
+                ' gendergerecht',
+                ' derb',
+                
 
                 ' , ,',                 #clean up crew
                 ' ,, '                  #clean up crew
