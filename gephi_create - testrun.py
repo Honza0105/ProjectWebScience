@@ -1,4 +1,5 @@
 import csv
+import ast
 
 def dictionary_to_CSV(word_synonyms, nodes_target, edges_target):
     # Create an array with unique words
@@ -29,4 +30,9 @@ def dictionary_to_CSV(word_synonyms, nodes_target, edges_target):
 
 unpickled_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\unpickled_german.py"
 
-dictionary_to_CSV(unpickled_file, "german_nodes.csv", "german_edges.csv")
+# Load the dictionary from the Python file
+with open(unpickled_file, 'r', encoding='utf-8') as file:
+    content = file.read()
+    word_synonyms = ast.literal_eval(content)
+
+dictionary_to_CSV(word_synonyms, "german_nodes.csv", "german_edges.csv")
