@@ -38,7 +38,7 @@ replacements = [', abwertend',          #works, don't touch
                 '[Hinweis: weitere Informationen erhalten Sie durch Ausklappen des Eintrages]',
                 ' geh.',
                 ', sehr',
-                ' franz.',
+                'franz.',
                 ' norddeutsch',
                 ' Hauptform',
                 ' ugs.',

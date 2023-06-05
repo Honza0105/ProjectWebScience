@@ -33,5 +33,6 @@ def dictionary_to_CSV(original_file, nodes_target, edges_target):
                     writer.writerow([source_index, target_index, 'Directed'])
 
 re_pickle = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\repickled_german.pkl"
+unpickled_file = "D:\\Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\unpickled_german.py"
 
 dictionary_to_CSV(re_pickle, "german_nodes.csv", "german_edges.csv")
