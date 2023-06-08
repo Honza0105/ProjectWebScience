@@ -1,9 +1,9 @@
 import pickle
 
-initial_pickle = "D:\\_Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\_pickles\\word_dutch.pkl"
-unpickled_file = "D:\\_Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\unpickled_dutch.py"
-re_pickle = "D:\\_Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\repickled_dutch.pkl"
-change_log_file = "D:\\_Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\change_log_dutch.txt"
+initial_pickle = "D:\\_Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\_pickles\\word_german.pkl"
+unpickled_file = "D:\\_Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\unpickled_german.py"
+re_pickle = "D:\\_Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\repickled_german.pkl"
+change_log_file = "D:\\_Mano\\Projektėliai\\GitHub\\ProjectWebScience\\Files for PWS\\Output\\change_log_german.txt"
 
 def write_change_log(original_value, modified_value, replaced_substrings):
     with open(change_log_file, 'a', encoding='utf-8') as file:
@@ -193,7 +193,7 @@ def processing_function(value):
 
 def unpickling_the_snake(dictionary, output_file):
     with open(output_file, 'w', encoding='utf-8') as file:
-        file.write("scraped_dutch = {\n")
+        file.write("scraped_german = {\n")
         for key in sorted(dictionary):
             value = dictionary[key]
             if value is not None:
@@ -203,9 +203,9 @@ def unpickling_the_snake(dictionary, output_file):
     with open(re_pickle, 'wb') as gabijabuvocia:
         pickle.dump(dictionary, gabijabuvocia)
 
-dutch_dictionary = {}
+german_dictionary = {}
 
 with open(initial_pickle, 'rb') as file:
-    scraped_dutch = pickle.load(file)
+    scraped_german = pickle.load(file)
 
-unpickling_the_snake(scraped_dutch, unpickled_file)
+unpickling_the_snake(scraped_german, unpickled_file)
