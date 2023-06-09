@@ -1,3 +1,5 @@
 
 Files for PWS/
 .idea/
+*.xml
+*.iml
